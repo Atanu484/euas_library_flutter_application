@@ -7,7 +7,6 @@ import 'package:dio/dio.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'book.dart';
 import 'book_model.dart';
 import 'package:euas_library_flutter_application/pdf_view_screen.dart';
 import 'package:euas_library_flutter_application/book_search.dart';

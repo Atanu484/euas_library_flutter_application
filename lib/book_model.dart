@@ -4,7 +4,6 @@ import 'package:file_picker/file_picker.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'book.dart';
-import 'book.dart';
 import 'book_model.dart';
 
 class BookModel extends ChangeNotifier {
