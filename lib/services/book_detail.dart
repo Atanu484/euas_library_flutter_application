@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'book.dart';
-import 'book_model.dart';
-import 'pdf_view_screen.dart';
+import 'package:euas_library_flutter_application/model/book.dart';
+import 'package:euas_library_flutter_application/model/book_model.dart';
+import 'package:euas_library_flutter_application/services/pdf_view.dart';
+import 'package:euas_library_flutter_application/services/book_detail.dart';
+
 
 class BookDetail extends StatefulWidget {
   final Book? book;
@@ -34,10 +36,12 @@ class _BookDetailState extends State<BookDetail> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.book == null ? 'Add Book' : 'Edit Book'),
+        backgroundColor: Colors.yellow.shade800,
       ),
       body: Form(
         key: _formKey,
-        child: Column(
+        child: ListView(
+          padding: EdgeInsets.all(16.0),
           children: <Widget>[
             TextFormField(
               controller: _titleController,
@@ -49,6 +53,7 @@ class _BookDetailState extends State<BookDetail> {
                 return null;
               },
             ),
+            SizedBox(height: 10),
             TextFormField(
               controller: _authorController,
               decoration: InputDecoration(labelText: 'Author'),
@@ -59,6 +64,7 @@ class _BookDetailState extends State<BookDetail> {
                 return null;
               },
             ),
+            SizedBox(height: 10),
             TextFormField(
               controller: _descriptionController,
               decoration: InputDecoration(labelText: 'Description'),
@@ -69,6 +75,7 @@ class _BookDetailState extends State<BookDetail> {
                 return null;
               },
             ),
+            SizedBox(height: 10),
             ElevatedButton(
               onPressed: () async {
                 String newPdfUrl = await Provider.of<BookModel>(context, listen: false).uploadPdf();
@@ -79,7 +86,9 @@ class _BookDetailState extends State<BookDetail> {
                 }
               },
               child: Text('Upload New PDF'),
+              style: ElevatedButton.styleFrom(primary: Colors.green),
             ),
+            SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -90,6 +99,7 @@ class _BookDetailState extends State<BookDetail> {
                 );
               },
               child: Text('Show PDF'),
+              style: ElevatedButton.styleFrom(primary: Colors.purple),
             ),
           ],
         ),
@@ -112,26 +122,10 @@ class _BookDetailState extends State<BookDetail> {
             Navigator.of(context).pop();
           }
         },
+        backgroundColor: Colors.yellow.shade700,
         child: Icon(Icons.save),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        child: Row(
-          children: <Widget>[
-            IconButton(
-              icon: Icon(Icons.delete),
-              onPressed: () {
-                if (widget.book != null) {
-                  Provider.of<BookModel>(context, listen: false).delete(widget.book!);
-                }
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ),
       ),
     );
   }
 }
-
 

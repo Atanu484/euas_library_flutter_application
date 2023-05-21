@@ -1,11 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_pdfview/flutter_pdfview.dart';
-import 'package:path_provider/path_provider.dart';
 import 'dart:io';
-import 'package:http/http.dart';
-import 'book.dart';
-import 'book_model.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:path_provider/path_provider.dart';
+import 'package:flutter_pdfview/flutter_pdfview.dart';
+import 'package:euas_library_flutter_application/model/book.dart';
+import 'package:euas_library_flutter_application/model/book_model.dart';
 
 class PdfViewScreen extends StatefulWidget {
   final String url;
